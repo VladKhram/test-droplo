@@ -43,9 +43,13 @@ export default {
           secondary: '#F9FAFB',
           gray: '#F5F5F5',
         },
+        lightGray: '#EEEEEE',
       },
-      dropShadow: {
+      boxShadow: {
         xs: '0 1px 2px #1018280D',
+      },
+      padding: {
+        7.5: '30px',
       },
     },
   },
