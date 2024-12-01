@@ -1,9 +1,9 @@
-import MenuDefault from './components/menuDefault';
+import MenuCreateItem from './components/menuCreateItem';
 
 export default function Menu() {
   return (
     <div className='w-full'>
-      <MenuDefault />
+      <MenuCreateItem />
     </div>
   );
 }

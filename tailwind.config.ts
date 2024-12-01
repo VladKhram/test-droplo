@@ -28,6 +28,7 @@ export default {
             text: '#6941C6',
           },
         },
+        error: '#FF6052',
         text: {
           primary: '#101828',
           secondary: '#344054',
@@ -50,6 +51,7 @@ export default {
       },
       padding: {
         7.5: '30px',
+        10.5: '42px',
       },
     },
   },

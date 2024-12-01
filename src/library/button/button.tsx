@@ -4,9 +4,9 @@ const ButtonVariants = {
   primary:
     'text-button-primary-text bg-button-primary border-button-primary-border hover:brightness-110',
   secondary:
-    'text-button-secondary-text bg-button-secondary border-button-secondary-border',
+    'text-button-secondary-text bg-button-secondary border-button-secondary-border hover:brightness-95',
   secondaryColor:
-    'text-button-secondaryColor-text bg-button-secondaryColor border-button-secondaryColor-border',
+    'text-button-secondaryColor-text bg-button-secondaryColor border-button-secondaryColor-border hover:brightness-95',
 };
 
 type ButtonVariantNames = keyof typeof ButtonVariants;
