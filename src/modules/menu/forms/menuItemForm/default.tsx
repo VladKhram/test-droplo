@@ -7,23 +7,32 @@ import Input from '@/library/input/input';
 import Label from '@/library/input/label';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from '@/library/buttonIcon/buttonIcon';
+import { MenuItemFieldsType } from '../../types';
 
-type FormData = {
-  name: string;
-  link?: string;
-};
+interface MenuItemFormProps {
+  onSubmit: (data: MenuItemFieldsType) => void;
+  onClose: () => void;
+  defaultValues?: MenuItemFieldsType;
+}
 
-export default function MenuCreateItem() {
+export default function MenuItemForm({
+  onSubmit,
+  onClose,
+  defaultValues,
+}: MenuItemFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<MenuItemFieldsType>({ defaultValues });
 
   return (
     <form
       className='py-5 px-6 border border-border-primary bg-background-primary rounded-lg flex flex-col gap-5'
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
+      onReset={() => {
+        onClose();
+      }}
     >
       <div className='flex gap-4'>
         <div className='flex flex-col gap-2 w-full'>
