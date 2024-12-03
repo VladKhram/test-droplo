@@ -1,48 +1,36 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import { MenuItemType } from '../types';
+import { MenuItemInfoStyle, MenuItemType } from '../types';
 import MenuGroupElements from './menuGroupElements';
 import MenuItemInformation from './menuItemInformation';
 import { MenuContext } from '../menu';
 import { getMenuWithoutItemById } from '../functions/store';
 import MenuItemCreateForm from '../forms/menuItemForm/create';
 import MenuItemUpdateForm from '../forms/menuItemForm/update';
+import ItemSortable from './ItemDraggable';
 
-interface MenuItemProps {
+interface MenuItemProps extends MenuItemInfoStyle {
   element: MenuItemType;
-  isBorderBottom: boolean;
-  isBorderTop: boolean;
-  isBorderLeft: boolean;
-  isBorderRounded: boolean;
 }
 
-export default function MenuItem({
-  element,
-  isBorderTop,
-  isBorderBottom,
-  isBorderLeft,
-  isBorderRounded,
-}: MenuItemProps) {
+export default function MenuItem({ element, ...itemStyle }: MenuItemProps) {
   const [isCreate, setIsCreate] = useState(false);
   const { menuItems, setMenuItems } = useContext(MenuContext);
   const [isEdit, setIsEdit] = useState(false);
 
-  const onRemoveThis = () => {
+  const handleRemoveThis = () => {
     setMenuItems(getMenuWithoutItemById(menuItems, element.id));
   };
 
   return (
     <div>
       <MenuItemInformation
-        {...element}
-        isBorderBottom={isBorderBottom}
-        isBorderTop={isBorderTop}
-        isBorderLeft={isBorderLeft}
-        isBorderRounded={isBorderRounded}
+        {...itemStyle}
+        element={element}
         onCreateChild={() => setIsCreate(true)}
         onUpdateThis={() => setIsEdit(true)}
-        onDeleteThis={onRemoveThis}
+        onDeleteThis={handleRemoveThis}
       />
       <div className='pl-16 bg-background-secondary'>
         {isEdit && (

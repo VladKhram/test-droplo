@@ -3,21 +3,18 @@
 import MoveIcon from '@/assets/icons/move.svg';
 import ButtonIcon from '@/library/buttonIcon/buttonIcon';
 import ButtonsGroup from '@/library/buttonsGroup/buttonsGroup';
-import { MenuItemFieldsType } from '../types';
+import { MenuItemInfoStyle, MenuItemType } from '../types';
+import ItemSortable from './ItemDraggable';
 
-interface MenuItemInformationProps extends MenuItemFieldsType {
-  isBorderBottom?: boolean;
-  isBorderTop?: boolean;
-  isBorderLeft?: boolean;
-  isBorderRounded?: boolean;
+interface MenuItemInformationProps extends MenuItemInfoStyle {
+  element: MenuItemType;
   onCreateChild: () => void;
   onDeleteThis: () => void;
   onUpdateThis: () => void;
 }
 
 export default function MenuItemInformation({
-  name,
-  link,
+  element,
   isBorderBottom = true,
   isBorderTop = false,
   isBorderLeft = false,
@@ -38,12 +35,18 @@ export default function MenuItemInformation({
           `}
       >
         <div className='flex gap-[3px]'>
-          <ButtonIcon>
-            <MoveIcon className='w-5 h-5' />
-          </ButtonIcon>
+          <ItemSortable id={element.id}>
+            <ButtonIcon>
+              <MoveIcon className='w-5 h-5' />
+            </ButtonIcon>
+          </ItemSortable>
           <div className='flex flex-col justify-between'>
-            <p className='font-semibold text-sm text-text-primary'>{name}</p>
-            <p className='font-normal text-sm text-text-tertiary'>{link}</p>
+            <p className='font-semibold text-sm text-text-primary'>
+              {element.name}
+            </p>
+            <p className='font-normal text-sm text-text-tertiary'>
+              {element.link}
+            </p>
           </div>
         </div>
 

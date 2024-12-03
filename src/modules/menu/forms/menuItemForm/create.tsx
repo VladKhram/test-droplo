@@ -13,7 +13,7 @@ export default function MenuItemCreateForm({
   const defaultValue = { name: '', link: '' };
   const { menuItems, setMenuItems } = useContext(MenuContext);
 
-  const onAdd = (data: MenuItemFieldsType) => {
+  const handleAdd = (data: MenuItemFieldsType) => {
     setMenuItems(getMenuWithNewItem(menuItems, data, element.id));
     onClose();
   };
@@ -21,7 +21,7 @@ export default function MenuItemCreateForm({
   return (
     <div className='py-5 pr-6'>
       <MenuItemForm
-        onSubmit={onAdd}
+        onSubmit={handleAdd}
         onClose={onClose}
         defaultValues={defaultValue}
       />

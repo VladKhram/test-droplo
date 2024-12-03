@@ -17,7 +17,7 @@ export default function MenuRootItemCreateForm({
   const defaultValue = { name: '', link: '' };
   const { menuItems, setMenuItems } = useContext(MenuContext);
 
-  const onAdd = (data: MenuItemFieldsType) => {
+  const handleAdd = (data: MenuItemFieldsType) => {
     setMenuItems(getMenuWithNewItem(menuItems, data));
     onClose();
   };
@@ -25,7 +25,7 @@ export default function MenuRootItemCreateForm({
   return (
     <div className={isMenuEmpty ? '' : 'py-4 px-6'}>
       <MenuItemForm
-        onSubmit={onAdd}
+        onSubmit={handleAdd}
         onClose={onClose}
         defaultValues={defaultValue}
       />

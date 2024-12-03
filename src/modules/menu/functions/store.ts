@@ -17,7 +17,7 @@ const getParentItemWithNewChild = (
 
 export const getMenuWithNewItem = (
   menuItems: MenuItemType[],
-  element: MenuItemFieldsType,
+  element: MenuItemFieldsType | MenuItemType,
   parentId?: string
 ) => {
   if (!parentId) {
@@ -81,4 +81,46 @@ export const getMenuWithUpdatedItem = (
 
     return el;
   });
+};
+
+export const getElementById = (
+  menuItems: MenuItemType[],
+  id: string
+): MenuItemType | void => {
+  for (let i = 0; i < menuItems.length; i++) {
+    const element = menuItems[i];
+
+    if (element.id === id) {
+      return element;
+    }
+
+    if (element.children) {
+      const elementFromChild = getElementById(element.children, id);
+
+      if (elementFromChild) {
+        return elementFromChild;
+      }
+    }
+  }
+};
+
+export const getMenuAfterDnD = (
+  menuItems: MenuItemType[],
+  idStart: string,
+  idEnd: string
+) => {
+  const element = getElementById(menuItems, idStart);
+
+  if (element) {
+    if (element.children) {
+      if (getElementById(element.children, idEnd)) {
+        return menuItems;
+      }
+    }
+
+    const menuWithoutTheElement = getMenuWithoutItemById(menuItems, idStart);
+    return getMenuWithNewItem(menuWithoutTheElement, element, idEnd);
+  } else {
+    return menuItems;
+  }
 };

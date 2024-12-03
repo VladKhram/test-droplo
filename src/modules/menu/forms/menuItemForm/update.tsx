@@ -12,7 +12,7 @@ export default function MenuItemUpdateForm({
 }: FormControllerWithElement) {
   const { menuItems, setMenuItems } = useContext(MenuContext);
 
-  const onUpdate = (data: MenuItemFieldsType) => {
+  const handleUpdate = (data: MenuItemFieldsType) => {
     setMenuItems(getMenuWithUpdatedItem(menuItems, element.id, data));
     onClose();
   };
@@ -20,7 +20,7 @@ export default function MenuItemUpdateForm({
   return (
     <div className='py-4 pr-6'>
       <MenuItemForm
-        onSubmit={onUpdate}
+        onSubmit={handleUpdate}
         onClose={onClose}
         defaultValues={element}
       />
